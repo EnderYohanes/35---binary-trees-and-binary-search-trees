@@ -1,7 +1,7 @@
 'use strict';
 
 class TreeNode {
-  constructor(vale, left=null, right=null) 
+  constructor(val, left=null, right=null) 
   {
     this.value = value;
     this.left = left;
