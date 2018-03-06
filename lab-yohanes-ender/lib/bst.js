@@ -35,8 +35,8 @@ class BST {
   _find(root, value) {
     return (!root) ? null
       : (root.value === value) ? root
-      : (root.value < value) ? this._find(root.right, value)
-      : this._find(root.left, value);
+        : (root.value < value) ? this._find(root.right, value)
+          : this._find(root.left, value);
   }
 
   remove(value) {
@@ -62,59 +62,59 @@ class BST {
       // if the node to be removed is the root:
       if (currentNode === this.root) {
         switch (childCount) {
-          // if the root has no children:
-          case 0:
-            this.root = null;
-            break;
+        // if the root has no children:
+        case 0:
+          this.root = null;
+          break;
           // if the root has one child:
-          case 1:
-            this.root = ((currentNode.right === null) ? currentNode.left : currentNode.right);
-            break;
+        case 1:
+          this.root = ((currentNode.right === null) ? currentNode.left : currentNode.right);
+          break;
           // if the root has two children:
-          case 2:
-            let replacementNode = this.root.left;
-            let replacementParent = null;
-            while (replacementNode.right !== null) {
-              replacementParent = replacementNode;
-              replacementNode = replacementNode.right;
-            }
-            if (replacementParent !== null) {
-              replacementParent.right = replacementNode.left;
-              replacementNode.right = this.root.right;
-              replacementNode.left = this.root.left;
-            } else {
-              replacementNode.right = this.root.right;
-            }
-            this.root = replacementNode;
+        case 2:
+          let replacementNode = this.root.left;
+          let replacementParent = null;
+          while (replacementNode.right !== null) {
+            replacementParent = replacementNode;
+            replacementNode = replacementNode.right;
+          }
+          if (replacementParent !== null) {
+            replacementParent.right = replacementNode.left;
+            replacementNode.right = this.root.right;
+            replacementNode.left = this.root.left;
+          } else {
+            replacementNode.right = this.root.right;
+          }
+          this.root = replacementNode;
         }
       } else {
         switch (childCount) {
-          case 0:
-            if (currentNode.value < parentNode.value) parentNode.left = null;
-            else parentNode.right = null;
-            break;
-          case 1:
-            if (currentNode.value < parentNode.value) {
-              parentNode.left = ((currentNode.right === null) ? currentNode.left = null
-                : currentNode.right = null);
-            } else {
-              parentNode.right = ((current.right === null) ? currentNode.left
-                : currentNode.right);
-            }
-            break;
-          case 2:
-            replacementNode = currentNode.left;
-            replacementParent = currentNode;
-            while(replacementNode.right !== null) {
-              replacementParent = replacementNode;
-              replacementNode = replacementNode.right;
-            }
-            replacementParent.right = replacementNode.left;
-            replacementNode.right = currentNode.right;
-            replacementNode.left = currentNode.left;
+        case 0:
+          if (currentNode.value < parentNode.value) parentNode.left = null;
+          else parentNode.right = null;
+          break;
+        case 1:
+          if (currentNode.value < parentNode.value) {
+            parentNode.left = ((currentNode.right === null) ? currentNode.left = null
+              : currentNode.right = null);
+          } else {
+            parentNode.right = ((currentNode.right === null) ? currentNode.left
+              : currentNode.right);
+          }
+          break;
+        case 2:
+          replacementNode = currentNode.left;
+          replacementParent = currentNode;
+          while(replacementNode.right !== null) {
+            replacementParent = replacementNode;
+            replacementNode = replacementNode.right;
+          }
+          replacementParent.right = replacementNode.left;
+          replacementNode.right = currentNode.right;
+          replacementNode.left = currentNode.left;
 
-            if (currentNode.value = parentNode.value) parentNode.left = replacementNode;
-            else parentNode.right = replacementNode;
+          if (currentNode.value = parentNode.value) parentNode.left = replacementNode;
+          else parentNode.right = replacementNode;
         }
       }
     } else {
